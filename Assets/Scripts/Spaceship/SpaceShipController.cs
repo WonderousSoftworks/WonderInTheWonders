@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// This scripts handles all logic related to spaceship movement and physics
 /// Temporary Manual: The mouse handles the majority of the direction.
-/// A to move right, D to move left, W to move forwards, D to move backwards. Q and E to roll. Left ctrl move down, space move up. Shift to boost.
+/// Q to move right, E to move left, W to move forwards, D to move backwards. A and D to roll. Left ctrl move down, space move up. Shift to boost.
 /// </summary>
 [RequireComponent(typeof(Rigidbody))] //All additional ships will require a rigidbody
 public class SpaceShipController : MonoBehaviour
