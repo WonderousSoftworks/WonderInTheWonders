@@ -370,6 +370,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Camera Controls",
+            "id": "ba0f9758-71d6-4a36-b085-501153eaa181",
+            "actions": [
+                {
+                    "name": "Mouse Zoom",
+                    "type": "PassThrough",
+                    "id": "fd13966c-c8de-483c-a1aa-3cdfb1cad8a6",
+                    "expectedControlType": "Axis",
+                    "processors": "Normalize(min=-1,max=1)",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c05e2e27-3513-4e4c-9bbd-95c5fef9129c",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

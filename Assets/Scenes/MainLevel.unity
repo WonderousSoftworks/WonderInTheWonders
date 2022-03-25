@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.006044987, g: 0.005316794, b: 0.006438377, a: 1}
+  m_IndirectSpecularColor: {r: 0.006043719, g: 0.0053165676, b: 0.0064360993, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 880830398}
   - component: {fileID: 880830397}
   - component: {fileID: 880830396}
+  - component: {fileID: 880830399}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -420,6 +421,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 705b6ce1-b2f7-4061-89fc-7809c4052c7f
     m_ActionName: Ship Controls/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fd13966c-c8de-483c-a1aa-3cdfb1cad8a6
+    m_ActionName: Camera Controls/Mouse Zoom[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ship Controls
@@ -468,6 +473,25 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &880830399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880830394}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c39acaa6e49f5649b399b33a10f1671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputProvider: {fileID: -944628639613478452, guid: 137f449ae952d1d45b08fffae6d041b8, type: 3}
+  freeLookCameraToZoom: {fileID: 960174773}
+  zoomSpeed: 1
+  zoomAcceleration: 2.5
+  zoomInnerRange: 3
+  zoomOuterRange: 50
+  zoomYAxis: 0
 --- !u!1 &960174772
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +502,8 @@ GameObject:
   m_Component:
   - component: {fileID: 960174774}
   - component: {fileID: 960174773}
+  - component: {fileID: 960174775}
+  - component: {fileID: 960174776}
   m_Layer: 0
   m_Name: CM_vcam_Ship
   m_TagString: Untagged
@@ -503,10 +529,10 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 880830395}
   m_Follow: {fileID: 1745946869}
   m_Lens:
-    FieldOfView: 60
+    FieldOfView: 80.79695
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -527,14 +553,44 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960174772}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.389, z: -3.458}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.189, z: -2.458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1945618144}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &960174775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960174772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  XYAxis: {fileID: 0}
+  ZAxis: {fileID: 3107517385050182637, guid: 137f449ae952d1d45b08fffae6d041b8, type: 3}
+--- !u!114 &960174776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960174772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a80f3d011992f743bb9f9aa847b55d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 5
+  zoomInMax: 90
+  zoomOutMax: 40
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +644,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80.79695
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -614,7 +670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.389, z: -3.458}
+  m_LocalPosition: {x: 0, y: 1.189, z: -2.458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1117,8 +1173,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1945618144}
   - component: {fileID: 1945618147}
-  - component: {fileID: 1945618146}
   - component: {fileID: 1945618145}
+  - component: {fileID: 1945618146}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -1162,19 +1218,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1945618143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 36d1163fa822e8b418a0a603ec078d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.1, z: 0.4}
-  ShoulderOffset: {x: 0, y: -0.2, z: 1}
-  VerticalArmLength: 0.4
-  CameraSide: 1
-  CameraDistance: 2
-  CameraCollisionFilter:
-    serializedVersion: 2
-    m_Bits: 0
-  IgnoreTag: 
-  CameraRadius: 0.2
+  m_Damping: 0
 --- !u!114 &1945618147
 MonoBehaviour:
   m_ObjectHideFlags: 3
