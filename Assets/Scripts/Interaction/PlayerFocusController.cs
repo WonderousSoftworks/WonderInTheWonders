@@ -1,55 +1,52 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Interaction
+[DisallowMultipleComponent]
+public class PlayerFocusController : MonoBehaviour
 {
-    [DisallowMultipleComponent]
-    public class PlayerFocusController : MonoBehaviour
+    [SerializeField]
+    private GameObject overlayCamera;
+
+    public Focusable tmpFocus;
+
+    /// <summary>
+    ///   The currently focused object; null of nothing is focused
+    /// </summary>
+    public Focusable Focused
     {
-        [SerializeField]
-        private GameObject overlayCamera;
-
-        public Focusable tmpFocus;
-
-        /// <summary>
-        ///   The currently focused object; null of nothing is focused
-        /// </summary>
-        public Focusable Focused
+        get => focused;
+        private set
         {
-            get => focused;
-            private set
-            {
-                if (focused == value) return;
+            if (focused == value) return;
 
-                overlayCamera.SetActive(value != null);
-                if (focused != null) focused.RemoveFocus();
-                if (value != null) value.GetFocus();
+            overlayCamera.SetActive(value != null);
+            if (focused != null) focused.RemoveFocus();
+            if (value != null) value.GetFocus();
 
-                focused = value;
-            }
+            focused = value;
         }
-        private Focusable focused;
+    }
+    private Focusable focused;
 
-        private void Start()
+    private void Start()
+    {
+        overlayCamera.SetActive(false);
+    }
+
+    public void OnMoveFocus(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (context.ReadValue<float>() > 0)
         {
-            overlayCamera.SetActive(false);
+            Focused = tmpFocus;
         }
+    }
 
-        public void OnMoveFocus(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
+    public void OnClearFocus(InputAction.CallbackContext context)
+    {
+        if (!context.performed || Focused == null) return;
 
-            if (context.ReadValue<float>() > 0)
-            {
-                Focused = tmpFocus;
-            }
-        }
-
-        public void OnClearFocus(InputAction.CallbackContext context)
-        {
-            if (!context.performed || Focused == null) return;
-
-            Focused = null;
-        }
+        Focused = null;
     }
 }
