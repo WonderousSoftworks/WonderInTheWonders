@@ -14,6 +14,8 @@ namespace Interaction
         [SerializeField]
         private int unfocusPriority = 0;
 
+        public CinemachineVirtualCamera FocusCamera => focusCamera;
+
         public void GetFocus()
         {
             if (focusCamera.Priority == focusPriority)
