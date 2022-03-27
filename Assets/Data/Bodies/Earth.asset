@@ -18,4 +18,4 @@ MonoBehaviour:
   orbitData:
     distance: 103
     period: 365.26
-  description: []
+  description: 

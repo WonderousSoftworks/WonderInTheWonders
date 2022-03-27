@@ -25,6 +25,7 @@ public class Focusable : MonoBehaviour
     {
         focusCamera.Priority = unfocusPriority;
         detailsPanel.SetData(data);
+        detailsPanel.gameObject.SetActive(false);
     }
 
     public void GetFocus()

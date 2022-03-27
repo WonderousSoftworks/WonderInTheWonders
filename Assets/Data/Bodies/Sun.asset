@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Sun
   radius: 46.5
-  orbitPeriod: 0
-  description: []
+  movementType: 0
+  orbitData:
+    distance: 0
+    period: 0
+  description: This is just for testing a long description part. You can put some
+    general information here.

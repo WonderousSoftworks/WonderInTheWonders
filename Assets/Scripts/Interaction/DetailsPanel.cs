@@ -7,9 +7,13 @@ public class DetailsPanel : MonoBehaviour
     [SerializeField]
     private TMP_Text nameText;
 
+    [SerializeField]
+    private TMP_Text descriptionText;
+
     public void SetData(BodyData data)
     {
         nameText.text = data.DisplayName;
+        descriptionText.text = data.Description;
         // set more stuff here
     }
 

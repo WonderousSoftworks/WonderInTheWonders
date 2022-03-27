@@ -25,14 +25,14 @@ public class BodyData : ScriptableObject
     [Header("Other")]
     [SerializeField]
     [TextArea]
-    [Tooltip("Generic description of this body, divided into paragraphs")]
-    private string[] description;
+    [Tooltip("Generic description of this body")]
+    private string description;
 
     public string DisplayName => displayName;
     public float Radius => radius;
     public BodyMovementType MovementType => movementType;
     public OrbitData OrbitData => orbitData;
-    public string[] Description => description;
+    public string Description => description;
 }
 
 public enum BodyMovementType
