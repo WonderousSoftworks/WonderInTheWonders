@@ -7,6 +7,7 @@ public class PlayerFocusController : MonoBehaviour
     [SerializeField]
     private GameObject overlayCamera;
 
+    // TODO implement proper selection for what to focus on
     public Focusable tmpFocus;
 
     /// <summary>
