@@ -12,7 +12,7 @@ public class Orbit : MonoBehaviour
     private float earthYear = (360f / 365.26f) * 360;
     // this is a temp value to speed up the simulation, when a simulation speed controller
     // is implemented, this script should poll that instead
-    private float simulationSpeed = 30;
+    [SerializeField] private float simulationSpeed = 30;
 
     // Start is called before the first frame update
     void Start()
