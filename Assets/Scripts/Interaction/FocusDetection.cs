@@ -12,17 +12,16 @@ public class FocusDetection : MonoBehaviour
 
     [SerializeField]
     [Min(0.0f)]
-    [Tooltip("Overrides the maximum distance at which this object can be focused on. Set to 0 to disable overriding.")]
+    [Tooltip("Overrides the maximum distance at which this object can be focused on. Set to 0 to disable overriding. " +
+             "Values greater than the far clipping plane distance of the main (spaceship) camera do not have any effects.")]
     private float maxDistanceOverride;
 
     [SerializeField]
     private OnIsFocusableChangedEvent onIsFocusableChanged;
 
-#if UNITY_EDITOR
     [Header("Debug")]
     [SerializeField]
-    [Tooltip("Do NOT manually change this. Use the property IsFocusable instead.")]
-#endif
+    [Tooltip("Do NOT manually change this. Use the property `IsFocusable` instead.")]
     private bool isFocusable; // Just the underlying field for the property below
 
     /// <summary>
@@ -73,12 +72,14 @@ public class FocusDetection : MonoBehaviour
         Vector3 thisPositionWorld = transform.position;
         Vector3 thisPositionToCamera = playerCamera.transform.worldToLocalMatrix *
                                        new Vector4(thisPositionWorld.x, thisPositionWorld.y, thisPositionWorld.z, 1.0f);
-        Debug.Log(thisPositionToCamera);
+        // Debug.Log(thisPositionToCamera);
 
         // Properties of the camera
         LensSettings lensSettings = playerCamera.m_Lens;
 
         // Check if the object is in front of the camera and not behind the far clip plane
+        // NOTE: This is still needed even with `FocusTrigger` because different objects might want different values for
+        // `maxDistanceOverride`.
         if (thisPositionToCamera.z <= lensSettings.NearClipPlane ||
             thisPositionToCamera.z > Mathf.Min(MaxDistance, lensSettings.FarClipPlane))
         {
@@ -112,4 +113,18 @@ public class FocusDetection : MonoBehaviour
         // After all those checks, we can finally say that this object is indeed focusable
         IsFocusable = true;
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (settings == null)
+        {
+            settings = Editor.Utils.AssetHelper.GetAssetWithName<FocusSettings>("FocusSettings");
+        }
+
+        if (settings == null)
+            Debug.LogError($"`FocusDetection` for {name} requires `settings` set, but " +
+                           "`FocusSettings` scriptable object asset with name \"FocusSettings\" cannot be found");
+    }
+#endif
 }
