@@ -1,11 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Cinemachine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
 public class PlayerFocusController : MonoBehaviour
 {
+    // A hack to get the reference to the camera for the ship from anywhere
+    public static CinemachineVirtualCamera ShipCamera { get; private set; }
+
+    [Header("Cameras")]
     [SerializeField]
     private GameObject overlayCamera;
+
+    [SerializeField]
+    private CinemachineVirtualCamera shipCamera;
+
+    [Header("Settings")]
+    [SerializeField]
+    private FocusSettings focusSettings;
+
+    [Header("Debug")]
+    [SerializeField]
+    private List<Focusable> potentialFocusList;
 
     // TODO implement proper selection for what to focus on
     public Focusable tmpFocus;
@@ -31,6 +48,9 @@ public class PlayerFocusController : MonoBehaviour
 
     private void Start()
     {
+        // A hack to get the reference to the camera for the ship from anywhere
+        ShipCamera = shipCamera;
+
         overlayCamera.SetActive(false);
     }
 
@@ -50,4 +70,6 @@ public class PlayerFocusController : MonoBehaviour
 
         Focused = null;
     }
+
+    private void MoveFocus() {}
 }
