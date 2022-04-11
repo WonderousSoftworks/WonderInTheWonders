@@ -52,6 +52,7 @@ public class FocusTrigger : MonoBehaviour
         if (focusable)
         {
             // Debug.Log($"Focusable from {focusable.name} entered trigger");
+            focusable.Detection.SetIsInTrigger(true);
             onFocusableEnter?.Invoke(focusable);
         }
     }
@@ -64,6 +65,7 @@ public class FocusTrigger : MonoBehaviour
         if (focusable)
         {
             // Debug.Log($"Focusable from {focusable.name} exited trigger");
+            focusable.Detection.SetIsInTrigger(false);
             onFocusableExit?.Invoke(focusable);
         }
     }

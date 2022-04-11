@@ -20,13 +20,12 @@ public class Focusable : MonoBehaviour
     [SerializeField]
     private DetailsPanel detailsPanel;
 
-    public bool IsFocusable => detection.IsFocusable;
-
-    private FocusDetection detection;
+    public bool IsFocusable => Detection.IsFocusable;
+    public FocusDetection Detection { get; private set; }
 
     private void Awake()
     {
-        detection = GetComponent<FocusDetection>();
+        Detection = GetComponent<FocusDetection>();
     }
 
     private void Start()
@@ -39,12 +38,12 @@ public class Focusable : MonoBehaviour
 
     private void OnEnable()
     {
-        detection.OnIsFocusableChanged += OnIsFocusableChanged;
+        Detection.OnIsFocusableChanged += OnIsFocusableChanged;
     }
 
     private void OnDisable()
     {
-        detection.OnIsFocusableChanged -= OnIsFocusableChanged;
+        Detection.OnIsFocusableChanged -= OnIsFocusableChanged;
     }
 
     private void OnIsFocusableChanged(bool isFocusable)
@@ -54,7 +53,7 @@ public class Focusable : MonoBehaviour
 
     public void GetFocus()
     {
-        if (!detection.IsFocusable)
+        if (!Detection.IsFocusable)
             Debug.LogWarning($"`GetFocus` called for {name}, but it is currently not focusable.\n" +
                              "Nothing is going to break, but something strange happened here.");
 

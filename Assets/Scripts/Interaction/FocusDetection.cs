@@ -49,6 +49,7 @@ public class FocusDetection : MonoBehaviour
     }
 
     private float MaxDistance => settings && maxDistanceOverride <= 0.0f ? settings.MaxDistance : maxDistanceOverride;
+    private bool isInTrigger;
 
     // NOTE: This script has a script execution order of -150. You can check it in the project settings. This enables us
     // to check if this object is in the player's view before the input event to move the focus is processed. The input
@@ -56,6 +57,13 @@ public class FocusDetection : MonoBehaviour
     // TODO: Use `OnBecameVisible` and `OnBecameInvisible` to further optimize?
     private void Update()
     {
+        // If not in the FocusTrigger, no need to check
+        if (!isInTrigger)
+        {
+            IsFocusable = false;
+            return;
+        }
+
         // The player camera at current frame
         CinemachineVirtualCamera playerCamera = PlayerFocusController.ShipCamera;
 
@@ -112,6 +120,16 @@ public class FocusDetection : MonoBehaviour
 
         // After all those checks, we can finally say that this object is indeed focusable
         IsFocusable = true;
+    }
+
+    /// <summary>
+    ///   <para>Set the value of `isInTrigger` field</para>
+    ///   <para>This is intended to be called only by `FocusTrigger`.</para>
+    /// </summary>
+    /// <param name="newIsInTrigger">new value</param>
+    public void SetIsInTrigger(bool newIsInTrigger)
+    {
+        isInTrigger = newIsInTrigger;
     }
 
 #if UNITY_EDITOR
