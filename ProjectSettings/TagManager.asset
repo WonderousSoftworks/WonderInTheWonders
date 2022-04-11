@@ -11,10 +11,10 @@ TagManager:
   - ZoomedOut
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Spaceship
+  - FocusTrigger
+  - Focusable
+  - DetailsPanel
   - 
   - 
   - 
