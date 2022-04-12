@@ -420,6 +420,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "f26eea4f-f643-421b-89e4-68474dfe6cf0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -497,6 +506,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ClearFocus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ad0d729-e087-4f4a-bb3d-ea5edad0ade8",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
