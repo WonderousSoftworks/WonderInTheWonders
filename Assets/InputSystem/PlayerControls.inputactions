@@ -521,6 +521,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI Controls",
+            "id": "0de72ce6-1fb3-4ab0-9ffa-3a6c0dc4b569",
+            "actions": [
+                {
+                    "name": "ToggleMap",
+                    "type": "Button",
+                    "id": "06125f1f-58ef-40a7-8b02-c9209894aa69",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4d13b0bd-0b7b-428a-8d36-67175a2b2ba9",
+                    "path": "<Keyboard>/#(M)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
