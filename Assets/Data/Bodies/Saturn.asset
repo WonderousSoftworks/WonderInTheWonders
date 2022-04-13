@@ -22,6 +22,6 @@ MonoBehaviour:
     distance: 4112
     period: 10747
     velocity: 9.7
-  description: "Saturn has 53 known moons with an additional 29 moons awaiting confirmation
-    of their discovery\u2014that is a total of 82 moons. Its rings are not solid.
-    They are made up of bits of ice, dust and rock."
+  description: Saturn has 53 known moons with an additional 29 moons awaiting confirmation
+    of their discovery, summing up to a total of 82 moons. Its rings are not solid;
+    they are made up of bits of ice, dust and rock.

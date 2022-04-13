@@ -22,6 +22,6 @@ MonoBehaviour:
     distance: 0
     period: 0
     velocity: 0
-  description: The Sun doesn't have a "year," per se. But the Sun orbits the center
-    of the Milky Way about every 230 million Earth years, bringing the planets, asteroids,
-    comets, and other objects with it.
+  description: The Sun doesn't have a "year," per se. But the stellar body orbits
+    the center of the Milky Way about every 230 million Earth years, bringing the
+    planets, asteroids, comets, and other objects with it.

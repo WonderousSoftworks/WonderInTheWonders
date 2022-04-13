@@ -17,12 +17,12 @@ MonoBehaviour:
   distanceFromSun: 778.5
   gravity: 23.1
   rotationPeriod: 9.9
-  movementType: 0
+  movementType: 1
   orbitData:
     distance: 745
     period: 4331
     velocity: 13.1
   description: "Jupiter is, by far, the largest planet in the solar system \u2013
-    more than twice as massive as all the other planets combined. Jupiter\u2019s
-    iconic Great Red Spot is a giant storm bigger than Earth that has raged for hundreds
+    more than twice as massive as all the other planets combined. Jupiter's iconic
+    Great Red Spot is a giant storm bigger than Earth that has beein raging for hundreds
     of years."

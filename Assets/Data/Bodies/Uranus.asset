@@ -22,6 +22,6 @@ MonoBehaviour:
     distance: 526
     period: 30589
     velocity: 6.8
-  description: Uranus has 13 known rings. The inner rings are narrow and dark and
-    the outer rings are brightly colored. Like Venus, Uranus rotates east to west.
-    But Uranus is unique in that it rotates on its side.
+  description: "Uranus has 13 known rings. The inner rings are narrow and dark, and\r
+    the outer rings are brightly colored. Like Venus, this planet rotates east to
+    west;\r but Uranus is unique in that it rotates on its side."

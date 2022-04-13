@@ -39,7 +39,7 @@ public class BodyData : ScriptableObject
 
     [Header("Other")]
     [SerializeField]
-    [TextArea]
+    [TextArea(10, 20)]
     [Tooltip("Generic description of this body")]
     private string description;
 
