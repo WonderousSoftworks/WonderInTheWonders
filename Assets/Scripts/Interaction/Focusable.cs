@@ -1,5 +1,4 @@
 ﻿using Cinemachine;
-using Editor.Utils;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -97,9 +96,10 @@ public class Focusable : MonoBehaviour
 
         if (data == null)
         {
-            data = AssetHelper.GetAssetWithName<BodyData>(name, true);
+            data = Editor.Utils.AssetHelper.GetAssetWithName<BodyData>(name, true);
             if (data != null)
-                Debug.LogWarning($"`BodyData` for {name} automatically assigned to {AssetHelper.GetAssetPath(data)}");
+                Debug.LogWarning(
+                    $"`BodyData` for {name} automatically assigned to {Editor.Utils.AssetHelper.GetAssetPath(data)}");
             else
                 Debug.LogError($"`Focusable.data` is not assigned for {name}");
         }
