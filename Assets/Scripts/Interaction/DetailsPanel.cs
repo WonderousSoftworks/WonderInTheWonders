@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -12,10 +13,26 @@ public class DetailsPanel : MonoBehaviour
     [SerializeField]
     private TMP_Text descriptionText;
 
+    [SerializeField]
+    private TMP_Text radius;
+
+    [SerializeField]
+    private TMP_Text distanceFSun;
+
+    [SerializeField]
+    private TMP_Text gravity;
+
+    [SerializeField]
+    private TMP_Text rotPeriod;
+
     public void SetData(BodyData data)
     {
         nameText.text = data.DisplayName;
         descriptionText.text = data.Description;
+        radius.text = data.Radius.ToString();
+        distanceFSun.text = data.DistanceFromSun.ToString();
+        gravity.text = data.Gravity.ToString();
+        rotPeriod.text = data.OrbitData.period.ToString();
         // set more stuff here
     }
 

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 452229c0006f4cfb923c8c087569f1d7, type: 3}
-  m_Name: Sun
+  m_Name: Mercury
   m_EditorClassIdentifier: 
-  displayName: Sun
-  radius: 6.9635e+9
-  distanceFromSun: 0
-  gravity: 274
-  rotationPeriod: 0
-  movementType: 0
+  displayName: Mercury
+  radius: 2439.5
+  distanceFromSun: 57.9
+  gravity: 3.7
+  rotationPeriod: 1407.6
+  movementType: 1
   orbitData:
-    distance: 0
-    period: 0
-    velocity: 0
-  description: The Sun doesn't have a "year," per se. But the Sun orbits the center
-    of the Milky Way about every 230 million Earth years, bringing the planets, asteroids,
-    comets, and other objects with it.
+    distance: 632
+    period: 88
+    velocity: 47.4
+  description: The closest planet to the Sun does indeed have ice on its surface.
+    The ice is found in permanently shadowed craters, those that never receive any
+    sunlight.
