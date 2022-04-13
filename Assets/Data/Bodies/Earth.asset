@@ -22,5 +22,8 @@ MonoBehaviour:
     distance: 103
     period: 365.26
     velocity: 29.8
-  description: This is just for testing a long description part. You can put some
-    general information here.
+  description: Currently the only planet that houses organic and intelligent life,
+    where 70% of it is covered in water. Every condition is suitable for us to exist
+    which is considered a cosmic fluke (at least for now) because we haven't been
+    contacted by any other intelligent life form and we haven't been able to contact
+    anyone outside ofour blue marvel marble.
