@@ -8,6 +8,11 @@ public class FocusOverlay : MonoBehaviour
     [SerializeField]
     private FocusNextIndicator previousIndicator;
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void OnFocusStateChanged(PlayerFocusController.FocusStateInfo focusState)
     {
         gameObject.SetActive(focusState.current != null);

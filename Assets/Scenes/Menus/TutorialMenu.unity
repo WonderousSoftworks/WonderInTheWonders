@@ -275,6 +275,9 @@ MonoBehaviour:
 
     "Left Shift" to activate hyper boost thrusters
 
+    "Tab"
+    to focus on planets
+
 
 '
   m_isRightToLeft: 0
