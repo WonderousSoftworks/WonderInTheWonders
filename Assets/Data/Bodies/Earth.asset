@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Earth
   m_EditorClassIdentifier: 
   displayName: Earth
-  radius: 1
+  radius: 6.378
+  distanceFromSun: 149.6
+  gravity: 9.8
+  rotationPeriod: 23.9
   movementType: 1
   orbitData:
     distance: 103
     period: 365.26
-  description: 
+    velocity: 29.8
+  description: This is just for testing a long description part. You can put some
+    general information here.
