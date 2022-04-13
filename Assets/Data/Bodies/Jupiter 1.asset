@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452229c0006f4cfb923c8c087569f1d7, type: 3}
+  m_Name: Jupiter 1
+  m_EditorClassIdentifier: 
+  displayName: Jupiter
+  radius: 71492
+  distanceFromSun: 778.5
+  gravity: 23.1
+  rotationPeriod: 9.9
+  movementType: 0
+  orbitData:
+    distance: 745
+    period: 4331
+    velocity: 13.1
+  description: "Jupiter is, by far, the largest planet in the solar system \u2013
+    more than twice as massive as all the other planets combined. Jupiter\u2019s
+    iconic Great Red Spot is a giant storm bigger than Earth that has raged for hundreds
+    of years."

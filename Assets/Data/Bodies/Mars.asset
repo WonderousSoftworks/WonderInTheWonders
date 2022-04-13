@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452229c0006f4cfb923c8c087569f1d7, type: 3}
+  m_Name: Mars
+  m_EditorClassIdentifier: 
+  displayName: Mars
+  radius: 3396
+  distanceFromSun: 228.8
+  gravity: 3.7
+  rotationPeriod: 24.6
+  movementType: 1
+  orbitData:
+    distance: 412
+    period: 687
+    velocity: 24.1
+  description: Mars is one of the most explored bodies in our solar system. Several
+    missions have visited this planet, from flybys and orbiters to rovers on the
+    surface.The first true Mars mission success was the Mariner 4 flyby in 1965.
