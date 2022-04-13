@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Sun
   m_EditorClassIdentifier: 
   displayName: Sun
-  radius: 46.5
+  radius: 6.9635e+9
+  distanceFromSun: 0
+  gravity: 274
+  rotationPeriod: 0
   movementType: 0
   orbitData:
     distance: 0
     period: 0
-  description: This is just for testing a long description part. You can put some
-    general information here.
+    velocity: 0
+  description: The Sun doesn't have a "year," per se. But the Sun orbits the center
+    of the Milky Way about every 230 million Earth years, bringing the planets, asteroids,
+    comets, and other objects with it.

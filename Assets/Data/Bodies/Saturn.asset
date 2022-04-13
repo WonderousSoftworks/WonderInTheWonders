@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452229c0006f4cfb923c8c087569f1d7, type: 3}
+  m_Name: Saturn
+  m_EditorClassIdentifier: 
+  displayName: Saturn
+  radius: 60268
+  distanceFromSun: 1432
+  gravity: 9
+  rotationPeriod: 10.7
+  movementType: 1
+  orbitData:
+    distance: 4112
+    period: 10747
+    velocity: 9.7
+  description: "Saturn has 53 known moons with an additional 29 moons awaiting confirmation
+    of their discovery\u2014that is a total of 82 moons. Its rings are not solid.
+    They are made up of bits of ice, dust and rock."

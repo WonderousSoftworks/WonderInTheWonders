@@ -22,6 +22,7 @@ public class Focusable : MonoBehaviour
 
     public bool IsFocusable => Detection.IsFocusable;
     public FocusDetection Detection { get; private set; }
+    public BodyData Data => data;
 
     private void Awake()
     {
@@ -36,20 +37,20 @@ public class Focusable : MonoBehaviour
         detailsPanel.gameObject.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-        Detection.OnIsFocusableChanged += OnIsFocusableChanged;
-    }
-
-    private void OnDisable()
-    {
-        Detection.OnIsFocusableChanged -= OnIsFocusableChanged;
-    }
-
-    private void OnIsFocusableChanged(bool isFocusable)
-    {
-        Debug.Log($"Focusable changed for {name}: {isFocusable}");
-    }
+    // private void OnEnable()
+    // {
+    //     Detection.OnIsFocusableChanged += OnIsFocusableChanged;
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     Detection.OnIsFocusableChanged -= OnIsFocusableChanged;
+    // }
+    //
+    // private void OnIsFocusableChanged(bool isFocusable)
+    // {
+    //     Debug.Log($"Focusable changed for {name}: {isFocusable}");
+    // }
 
     public void GetFocus()
     {

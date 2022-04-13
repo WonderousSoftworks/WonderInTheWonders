@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
@@ -10,12 +11,16 @@ public class PlayerFocusController : MonoBehaviour
     // A hack to get the reference to the camera for the ship from anywhere
     public static CinemachineVirtualCamera ShipCamera { get; private set; }
 
-    [Header("Cameras")]
-    [SerializeField]
-    private GameObject overlayCamera;
+    [System.Serializable]
+    public struct FocusStateInfo
+    {
+        public Focusable current;
+        public Focusable previous;
+        public Focusable next;
+    }
 
-    [SerializeField]
-    private CinemachineVirtualCamera shipCamera;
+    [System.Serializable]
+    public class OnFocusStateChangedEvent : UnityEvent<FocusStateInfo> {}
 
     [Header("Settings")]
     [SerializeField]
@@ -24,30 +29,65 @@ public class PlayerFocusController : MonoBehaviour
     [SerializeField]
     private FocusTrigger focusTrigger;
 
+    [Header("Cameras")]
+    [SerializeField]
+    private GameObject overlayCamera;
+
+    [SerializeField]
+    private CinemachineVirtualCamera shipCamera;
+
+    [SerializeField]
+    private OnFocusStateChangedEvent onFocusStateChanged;
+
+    public event UnityAction<FocusStateInfo> OnFocusStateChanged
+    {
+        add
+        {
+            onFocusStateChanged.AddListener(value);
+            value.Invoke(focusState);
+        }
+        remove => onFocusStateChanged.RemoveListener(value);
+    }
+
     [Header("Debug")]
     [SerializeField]
-    [Tooltip("Do NOT change this manually. Use `Focused` property instead.")]
-    private Focusable focused;
+    [Tooltip("Do NOT change this manually. Use `FocusState` property instead.")]
+    private FocusStateInfo focusState;
 
     [SerializeField]
     [Tooltip("Do NOT change this manually in the inspector.")]
     private List<Focusable> potentialFocusList = new List<Focusable>();
+
+    public FocusStateInfo FocusState => focusState;
+
+    private bool needsSort;
 
     /// <summary>
     ///   The currently focused object; null of nothing is focused
     /// </summary>
     public Focusable Focused
     {
-        get => focused;
+        get => focusState.current;
         private set
         {
-            if (focused == value) return;
+            if (focusState.current == value) return;
 
-            overlayCamera.SetActive(value != null);
-            if (focused != null) focused.RemoveFocus();
-            if (value != null) value.GetFocus();
+            bool newIsNull = value == null;
+            overlayCamera.SetActive(!newIsNull);
+            if (focusState.current != null) focusState.current.RemoveFocus();
+            if (!newIsNull) value.GetFocus();
 
-            focused = value;
+            focusState.current = value;
+
+            // NOTE: If the new value is not null, the information about next and previous should be set separately
+            if (newIsNull)
+            {
+                focusState.next = null;
+                focusState.previous = null;
+            }
+
+            // TODO temporary; please remove
+            onFocusStateChanged.Invoke(focusState);
         }
     }
 
@@ -115,8 +155,8 @@ public class PlayerFocusController : MonoBehaviour
 
         // The number of elements in the list that are actually focusable
         // We try to get the index of the first one that is not focusable, and if not found, we use the actual count.
-        int focusableCount = potentialFocusList.FindIndex(f => !f.IsFocusable);
-        if (focusableCount < 0) focusableCount = potentialFocusList.Count;
+        int focusableIndex = potentialFocusList.FindIndex(f => !f.IsFocusable);
+        int focusableCount = focusableIndex >= 0 ? focusableIndex : potentialFocusList.Count;
 
         // Nothing is focusable, so clear the focus
         if (focusableCount == 0)
@@ -128,6 +168,7 @@ public class PlayerFocusController : MonoBehaviour
         int idx = Focused ? potentialFocusList.IndexOf(Focused) : -1; // It's ok to pass in null, but no need to
         int newIdx;
 
+        // TODO figure out the logic here and invoke the focus state changed event
         if (idx < 0 || idx >= focusableCount)
         {
             // `idx` is -1 when
@@ -136,6 +177,10 @@ public class PlayerFocusController : MonoBehaviour
             // `idx` is greater than or equal to `focusableCount` if the currently focused one somehow changed.
             // But it doesn't matter. We just have to return the first or the last one in the list.
             newIdx = direction == MoveFocusDirection.Next ? 0 : focusableCount - 1;
+        }
+        else if (focusableCount == 1)
+        {
+            newIdx = -1;
         }
         else
         {
@@ -153,6 +198,10 @@ public class PlayerFocusController : MonoBehaviour
             return;
         }
 
+        // Set the information about previous and next in the list
+        focusState.previous = newIdx > 0 ? potentialFocusList[newIdx - 1] : null;
+        focusState.next = newIdx < focusableCount - 1 ? potentialFocusList[newIdx + 1] : null;
+
         // Finally assign what to focus on
         Focused = potentialFocusList[newIdx];
     }
@@ -164,7 +213,9 @@ public class PlayerFocusController : MonoBehaviour
 
     private void SortList()
     {
+        if (!needsSort) return;
         potentialFocusList.Sort(comparer);
+        needsSort = false;
     }
 
     #endregion // Methods / Focus Controls
@@ -177,11 +228,13 @@ public class PlayerFocusController : MonoBehaviour
         if (potentialFocusList.Contains(entered)) return;
 #endif
         potentialFocusList.Add(entered);
+        needsSort = true;
     }
 
     public void OnFocusableExit(Focusable exited)
     {
         potentialFocusList.Remove(exited);
+        needsSort = true;
     }
 
     #endregion // Methods / Focus Trigger Callbacks

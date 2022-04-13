@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -12,6 +10,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))] //All additional ships will require a rigidbody
 public class SpaceShipController : MonoBehaviour
 {
+    [System.Serializable]
+    public class OnBoostAmountChangedEvent : UnityEvent<float, float> {}
+
     [Header("Ship Movement Settings")]
     [SerializeField]
     private float yawTorque = 500f; //yaw = rotate left and right
@@ -40,7 +41,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField]
     private bool boosting = false; //determine if we are boosting
     [SerializeField]
-    private float currentBoostAmount;
+    private OnBoostAmountChangedEvent onBoostAmountChanged;
 
     [Header("Ship Gliding Settings")]
     //Glide physics
@@ -52,6 +53,21 @@ public class SpaceShipController : MonoBehaviour
     private float leftRightGlideReduction = 1000f;
     float glide, verticalGlide, horizontalGlide = 0f;
 
+    [Header("Debug")]
+    [SerializeField]
+    [Tooltip("Do NOT directly change this value. Use `CurrentBoostAmount` property instead.")]
+    private float currentBoostAmount;
+
+    public float CurrentBoostAmount
+    {
+        get => currentBoostAmount;
+        private set
+        {
+            if (Mathf.Abs(currentBoostAmount - value) < 0.001f) return;
+            currentBoostAmount = value;
+            onBoostAmountChanged?.Invoke(currentBoostAmount, maxBoostAmount);
+        }
+    }
 
     Rigidbody rb;
 
@@ -65,7 +81,7 @@ public class SpaceShipController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentBoostAmount = maxBoostAmount; //start will full boost
+        CurrentBoostAmount = maxBoostAmount; //start will full boost
     }
 
     //We want this to de independent of the framerate, therefore we use FixedUpdate
@@ -145,20 +161,17 @@ public class SpaceShipController : MonoBehaviour
     /// </summary>
     void HandleBoosting()
     {
-        if(boosting && currentBoostAmount > 0f) //if we are boosting and we have enough boost
+        if (boosting && CurrentBoostAmount > 0f) //if we are boosting and we have enough boost
         {
-            currentBoostAmount -= boostDeprecationRate; //lose boost gradually
-            if(currentBoostAmount <= 0f) //check again
+            CurrentBoostAmount = Mathf.Max(0.0f, CurrentBoostAmount - boostDeprecationRate); //lose boost gradually
+            if (CurrentBoostAmount <= 0f) //check again
             {
                 boosting = false;
             }
         }
-        else
+        else if (CurrentBoostAmount < maxBoostAmount)
         {
-            if(currentBoostAmount < maxBoostAmount)
-            {
-                currentBoostAmount += boostRechargeRate; //recharge boost
-            }
+            CurrentBoostAmount = Mathf.Min(maxBoostAmount, CurrentBoostAmount + boostRechargeRate); //recharge boost
         }
     }
 
